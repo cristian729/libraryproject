@@ -105,7 +105,6 @@ def add_book():
 
     return render_template("form.html")
 
-
 @app.route("/view")
 def view_database():
     conn = sqlite3.connect(DB_PATH)
@@ -123,9 +122,14 @@ def view_database():
     cursor.execute("SELECT * FROM CheckoutHistory")
     history = cursor.fetchall()
 
+    # Fetch all data from the Notifications table
+    cursor.execute("SELECT * FROM Notifications")
+    notifications = cursor.fetchall()
+
     conn.close()
 
-    return render_template("view.html", books=books, patrons=patrons, history=history)
+    return render_template("view.html", books=books, patrons=patrons, history=history, notifications=notifications)
+
 
 if __name__ == "__main__":
     import os

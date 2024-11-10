@@ -56,6 +56,22 @@
                 {% endfor %}
             </tbody>
         </table>
+
+        <h2>Notifications Table</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>NotificationID</th><th>PatronID</th><th>BookID</th><th>NotificationDate</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for notification in notifications %}
+                <tr>
+                    <td>{{ notification[0] }}</td><td>{{ notification[1] }}</td><td>{{ notification[2] }}</td><td>{{ notification[3] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
