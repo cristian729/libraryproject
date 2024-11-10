@@ -18,6 +18,7 @@ app.config["MAIL_DEFAULT_SENDER"] = ("Library Notification", "librarynotificatio
 # Initialize Flask-Mail
 mail = Mail(app)
 
+
 def send_email_to_patrons(patrons, title, author, genre):
     subject = "New Book Added to the Library!"
     body = (
@@ -27,14 +28,31 @@ def send_email_to_patrons(patrons, title, author, genre):
         f"We thought you might be interested based on your previous checkouts!\n\n"
         f"Happy reading,\nYour Library Team"
     )
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+
     for patron in patrons:
         recipient = patron[1]  # Email field
         try:
             msg = Message(subject=subject, recipients=[recipient], body=body)
             mail.send(msg)
             print(f"Email sent to {recipient}.")
+
+            # Insert notification into the Notifications table
+            cursor.execute(
+                """
+                INSERT INTO Notifications (PatronID, BookID, NotificationDate)
+                VALUES (?, ?, datetime('now'))
+                """,
+                (patron[0], None)  # PatronID from the list, BookID is None since it's for new book announcements
+            )
+            conn.commit()
+
         except Exception as e:
             print(f"Failed to send email to {recipient}: {str(e)}")
+
+    conn.close()
+
 
 @app.route("/", methods=["GET", "POST"])
 def add_book():
