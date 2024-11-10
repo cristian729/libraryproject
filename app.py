@@ -5,7 +5,7 @@ from flask_mail import Mail, Message
 app = Flask(__name__)
 app.secret_key = "supersecretkey"
 
-DB_PATH = "/Users/cristiancarroz/Desktop/Database Management/library_notification.db"
+DB_PATH = "library_notification.db"
 
 # Flask-Mail Configuration
 app.config["MAIL_SERVER"] = "smtp.gmail.com"
