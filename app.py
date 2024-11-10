@@ -105,6 +105,28 @@ def add_book():
 
     return render_template("form.html")
 
+
+@app.route("/view")
+def view_database():
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+
+    # Fetch all data from the Books table
+    cursor.execute("SELECT * FROM Books")
+    books = cursor.fetchall()
+
+    # Fetch all data from the Patrons table
+    cursor.execute("SELECT * FROM Patrons")
+    patrons = cursor.fetchall()
+
+    # Fetch all data from the CheckoutHistory table
+    cursor.execute("SELECT * FROM CheckoutHistory")
+    history = cursor.fetchall()
+
+    conn.close()
+
+    return render_template("view.html", books=books, patrons=patrons, history=history)
+
 if __name__ == "__main__":
     import os
     port = int(os.environ.get("PORT", 5000))

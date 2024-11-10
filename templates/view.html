@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Database Viewer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h2>Books Table</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>BookID</th><th>Title</th><th>Author</th><th>Genre</th><th>AcquisitionDate</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td>{{ book[0] }}</td><td>{{ book[1] }}</td><td>{{ book[2] }}</td>
+                    <td>{{ book[3] }}</td><td>{{ book[4] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Patrons Table</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>PatronID</th><th>Name</th><th>Email</th><th>Preferences</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for patron in patrons %}
+                <tr>
+                    <td>{{ patron[0] }}</td><td>{{ patron[1] }}</td><td>{{ patron[2] }}</td><td>{{ patron[3] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Checkout History</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>CheckoutID</th><th>PatronID</th><th>BookID</th><th>CheckoutDate</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in history %}
+                <tr>
+                    <td>{{ entry[0] }}</td><td>{{ entry[1] }}</td><td>{{ entry[2] }}</td><td>{{ entry[3] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
