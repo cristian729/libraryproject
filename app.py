@@ -12,7 +12,7 @@ app.config["MAIL_SERVER"] = "smtp.gmail.com"
 app.config["MAIL_PORT"] = 587
 app.config["MAIL_USE_TLS"] = True
 app.config["MAIL_USERNAME"] = "librarynotificationsystem@gmail.com"
-app.config["MAIL_PASSWORD"] = "euzc jyry yxht blrf"
+app.config["MAIL_PASSWORD"] = "Library123!"
 app.config["MAIL_DEFAULT_SENDER"] = ("Library Notification", "librarynotificationsystem@gmail.com")
 
 # Initialize Flask-Mail
